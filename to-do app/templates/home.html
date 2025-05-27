@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}HOME{% endblock %}
+{% block content %}
+    <h2>Welcome to TASKER!</h2>
+    <p id="p1"><i>"Your day, organized your way.."</i></p>
+<div class="homelinks">
+    <a href="{{url_for('login') }}">Login to access your tasks</a><br><br>
+<a href="{{url_for('register') }}">Havent registered yet?Click to register</a></div>
+{% endblock %}

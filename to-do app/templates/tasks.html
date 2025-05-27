@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks for {{ session.username }}</title>
+</head>
+<body>
+    <h1>Tasks for {{ session.username }}</h1>
+
+    <a href="{{ url_for('add_task', user_id=session.user_id) }}">Add New Task</a> |
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <ul>
+        {% if tasks %}
+            {% for task in tasks %}
+            <li>
+                {% if task.completed %}
+                    <s>{{ task.task }}</s>
+                {% else %}
+                    {{ task.task }}
+                {% endif %}
+
+                <!-- Toggle complete/incomplete -->
+                <a href="{{ url_for('complete_task', task_id=task.id) }}">
+                    [{{ 'Undo' if task.completed else 'Complete' }}]
+                </a>
+
+                <!-- Delete task form -->
+                <form action="{{ url_for('delete_task', task_id=task.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Delete this task?');">Delete</button>
+                </form>
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No tasks found.</li>
+        {% endif %}
+    </ul>
+</body>
+</html>

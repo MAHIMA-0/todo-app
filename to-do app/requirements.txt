@@ -1,0 +1,11 @@
+Flask
+render_template
+request
+redirect
+url_for
+session
+flash
+mysql.connector
+wraps
+generate_password_hash
+check_password_hash
